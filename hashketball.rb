@@ -110,6 +110,7 @@ def num_points_scored(players_name)
 	game_hash.each do |loc, team_data|
 		team_data[:players].each do |att, data|
 			if att == players_name
+				#return "#{players_name} scored #{data[:points]} points."
 				return data[:points]
 			end
 		end
@@ -120,6 +121,7 @@ def shoe_size(players_name)
 	game_hash.each do |loc, team_data|
 		team_data[:players].each do |att, data|
 			if att == players_name
+				#return "#{players_name}'s shoe size is #{data[:shoe]}."
 				return data[:shoe]
 			end
 		end
@@ -129,6 +131,7 @@ end
 def team_colors(team_name)
 	game_hash.each do |loc, team_data|
 		if team_data[:team_name] == team_name
+			#return "#{team_name}'s colors are #{team_data[:colors].join(' & ')}."
 			return team_data[:colors]
 		end
 	end
@@ -136,9 +139,14 @@ end
 
 def team_names
 	team_name = []
+	@team1 = {}
+	@team2 = {}
 	game_hash.each do |loc, team_data|
 		team_name << team_data[:team_name]
 	end
+	@team1 = team_name[0]
+	@team2 = team_name[1]
+	#return "The two teams are #{team_name.join(' & ')}."
 	return team_name
 end
 
@@ -151,6 +159,7 @@ def player_numbers(team_name)
 			end
 		end
 	end
+	#return "The jersey numbers for #{team_name} are #{jerseys.join(', ')}."
 	return jerseys
 end
 
@@ -163,6 +172,11 @@ def player_stats(players_name)
 			end
 		end
 	end
+	stat_string = []
+	stats.each do |key, value|
+		stat_string << "#{key}: #{value}"
+	end
+	#return "#{players_name}'s stats are #{stat_string.join(', ')}."
 	return stats
 end
 
@@ -175,6 +189,7 @@ def big_shoe_rebounds
 		biggest_shoe.sort!
 		team_data[:players].each do |att, data|
 			if biggest_shoe[-1] == data[:shoe]
+				#return "#{att} has the biggest shoe at size #{data[:shoe]}, and had #{data[:rebounds]} rebounds."
 				return data[:rebounds]
 			end
 		end
@@ -195,23 +210,25 @@ def most_points_scored
 			end
 		end
 	end
+	#return "#{player} scored the most with #{most_points[-1]} points."
 	return player
 end
 
 def winning_team
-	brooklyn_nets = 0
-	charlotte_hornets = 0
+	team1 = 0
+	team2 = 0
 	game_hash.each do |loc, team_data|
 		team_data[:players].each do |att, data|
-			team_data[:team_name] == "Brooklyn Nets" ? brooklyn_nets += data[:points] : charlotte_hornets += data[:points]
+			team_data[:team_name] == @team1 ? team1 += data[:points] : team2 += data[:points]
 		end
 	end
-	brooklyn_nets > charlotte_hornets ? "Brooklyn Nets" : "Charlotte Hornets"
+	#return team1 > team2 ? "#{@team1} won with #{team1} points. #{@team2} only scored #{team2} points." : "#{@team2} won with #{team2} points. #{@team1} only scored #{team1} points."
+	return team1 > team2 ? @team1 : @team2
 end
 
 def player_with_longest_name
 	names = []
-	long_name = {}
+	@long_name = {}
 	game_hash.each do |loc, team_data|
 		team_data[:players].each do |att, data|
 			names << att.size
@@ -219,11 +236,12 @@ def player_with_longest_name
 		names.sort!
 		team_data[:players].each do |players_name, data|
 			if names[-1] == players_name.size
-				long_name = players_name.clone
+				@long_name = players_name.clone
 			end
 		end
 	end
-	return long_name
+	#return "The player with the longest name today is #{@long_name}."
+	return @long_name
 end
 
 def long_name_steals_a_ton
@@ -235,17 +253,12 @@ def long_name_steals_a_ton
 		end
 		most_steals.sort!
 		team_data[:players].each do |att, data|
-			if player_with_longest_name == att
-				long_name_steals << data[:steals]
+			if @long_name == att
+				long_name_steals = data[:steals]
 			end
 		end
 	end
-	most_steals[-1] = long_name_steals ? true : false
+	#print "Did #{@long_name} have the most steals? "
+	#print most_steals[-1] == long_name_steals ? "Yes, with #{long_name_steals}." : "No; #{@long_name} only had #{long_name_steals}."
+	most_steals[-1] == long_name_steals ? true : false
 end
-
-
-
-
-
-
-
