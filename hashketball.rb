@@ -134,6 +134,14 @@ def team_colors(team_name)
 	end
 end
 
+def team_names
+	team_name = []
+	game_hash.each do |loc, team_data|
+		team_name << team_data[:team_name]
+	end
+	return team_name
+end
+
 def player_numbers(team_name)
 	jerseys = []
 	game_hash.each do |loc, team_data|
