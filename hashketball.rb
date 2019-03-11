@@ -1,9 +1,9 @@
-require 'pry'
+
 def game_hash
 	game_hash = {
 		:home => {
 			:team_name => "Brooklyn Nets",
-			:colors => ["Black", "white"],
+			:colors => ["Black", "White"],
 			:players => {"Alan Anderson" => {
 				:number => 0,
 				:shoe => 16,
@@ -21,7 +21,7 @@ def game_hash
 				:assists => 12,
 				:steals => 12,
 				:blocks => 12,
-				:slam_dunks => 7 
+				:slam_dunks => 7
 			}, "Brook Lopez" => {
 				:number => 11,
 				:shoe => 17,
@@ -39,7 +39,7 @@ def game_hash
 				:assists => 6,
 				:steals => 3,
 				:blocks => 8,
-				:slam_dunks => 5 
+				:slam_dunks => 5
 			}, "Jason Terry" => {
 				:number => 31,
 				:shoe => 15,
@@ -48,11 +48,11 @@ def game_hash
 				:assists => 2,
 				:steals => 4,
 				:blocks => 11,
-				:slam_dunks => 1 
+				:slam_dunks => 1
 				}
 			}
 		},
-		:away => { 
+		:away => {
 			:team_name => "Charlotte Hornets",
 			:colors => ["Turquoise", "Purple"],
 			:players => {"Jeff Adrien" => {
@@ -63,8 +63,8 @@ def game_hash
 				:assists => 1,
 				:steals => 2,
 				:blocks => 7,
-				:slam_dunks => 2 
-			}, "Bismark Biyombo" => {
+				:slam_dunks => 2
+			}, "Bismak Biyombo" => {
 				:number => 0,
 				:shoe => 16,
 				:points => 12,
@@ -72,7 +72,7 @@ def game_hash
 				:assists => 7,
 				:steals => 7,
 				:blocks => 15,
-				:slam_dunks => 10 
+				:slam_dunks => 10
 			}, "DeSagna Diop" => {
 				:number => 2,
 				:shoe => 14,
@@ -81,7 +81,7 @@ def game_hash
 				:assists => 12,
 				:steals => 4,
 				:blocks => 5,
-				:slam_dunks => 5 
+				:slam_dunks => 5
 			}, "Ben Gordon" => {
 				:number => 8,
 				:shoe => 15,
@@ -90,7 +90,7 @@ def game_hash
 				:assists => 2,
 				:steals => 1,
 				:blocks => 1,
-				:slam_dunks => 0 
+				:slam_dunks => 0
 			}, "Brendan Haywood" => {
 				:number => 33,
 				:shoe => 15,
@@ -99,7 +99,7 @@ def game_hash
 				:assists => 12,
 				:steals => 22,
 				:blocks => 5,
-				:slam_dunks => 12 
+				:slam_dunks => 12
 				}
 			}
 		}
@@ -132,6 +132,14 @@ def team_colors(team_name)
 			return team_data[:colors]
 		end
 	end
+end
+
+def team_names
+	team_name = []
+	game_hash.each do |loc, team_data|
+		team_name << team_data[:team_name]
+	end
+	return team_name
 end
 
 def player_numbers(team_name)
@@ -243,7 +251,7 @@ def good_practices
       team_data.each do |attribute, data|
         #are you ABSOLUTELY SURE what 'attribute' and 'team data' are? use binding.pry to find out!
         binding.pry
- 
+
         #what is 'data' at each loop through out .each block? when will the following line of code work and when will it break?
         data.each do |data_item|
             binding.pry
@@ -254,11 +262,3 @@ end
 
 good_practices
 =end
-
-
-
-
-
-
-
-
